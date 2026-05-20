@@ -1,1 +1,1 @@
-{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/api/client.ts","./src/api/hooks.ts","./src/api/types.ts","./src/components/activitypanel.tsx","./src/components/sidebar.tsx","./src/components/taskdialog.tsx","./src/components/tasklist.tsx"],"version":"5.9.3"}
+{"root":["./src/App.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/api/client.ts","./src/api/hooks.ts","./src/api/types.ts","./src/components/ActivityPanel.tsx","./src/components/Sidebar.tsx","./src/components/TaskDialog.tsx","./src/components/TaskList.tsx"],"version":"5.9.3"}
