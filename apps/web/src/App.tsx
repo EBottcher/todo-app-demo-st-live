@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Route, Routes, useParams } from 'react-router-dom';
 import { Sidebar } from './components/Sidebar';
 import { ActivityPanel } from './components/ActivityPanel';
@@ -10,6 +10,15 @@ import {
 import type { TaskDto } from './api/types';
 
 type DialogState = { open: false } | { open: true; task: TaskDto | null };
+type Theme = 'light' | 'dark';
+const THEME_STORAGE_KEY = 'todo-theme';
+
+function getInitialTheme(): Theme {
+  if (typeof window === 'undefined') return 'light';
+  const saved = window.localStorage.getItem(THEME_STORAGE_KEY);
+  if (saved === 'light' || saved === 'dark') return saved;
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
 
 function useDialog() {
   const [s, set] = useState<DialogState>({ open: false });
@@ -76,10 +85,19 @@ export default function App() {
   const dialog = useDialog();
   const projects = useProjects();
   const labels = useLabels();
+  const [theme, setTheme] = useState<Theme>(getInitialTheme);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    window.localStorage.setItem(THEME_STORAGE_KEY, theme);
+  }, [theme]);
 
   return (
     <div className="app">
-      <Sidebar />
+      <Sidebar
+        theme={theme}
+        onToggleTheme={() => setTheme(t => (t === 'light' ? 'dark' : 'light'))}
+      />
       <main className="main">
         <Routes>
           <Route path="/" element={<AllView dialog={dialog} />} />

@@ -15,7 +15,7 @@ export function TaskList({ tasks, projects, labels, onEdit }: Props) {
   const complete = useCompleteTask();
   const del = useDeleteTask();
 
-  if (!tasks.length) return <p style={{ color: '#94a3b8' }}>No tasks here.</p>;
+  if (!tasks.length) return <p className="muted-text">No tasks here.</p>;
 
   const projectMap = new Map(projects.map(p => [p.id, p]));
   const labelMap = new Map(labels.map(l => [l.id, l]));
@@ -39,7 +39,7 @@ export function TaskList({ tasks, projects, labels, onEdit }: Props) {
             />
             <div style={{ flex: 1, cursor: 'pointer' }} onClick={() => onEdit(t)}>
               <div className="title">{t.title}</div>
-              {t.description && <div style={{ color: '#64748b', fontSize: 13 }}>{t.description}</div>}
+              {t.description && <div className="task-desc">{t.description}</div>}
               <div className="meta">
                 <span className={`badge priority-${t.priority}`}>{t.priority}</span>
                 {project && (

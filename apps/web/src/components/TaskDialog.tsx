@@ -129,7 +129,7 @@ export function TaskDialog({ task, projects, labels, onClose }: Props) {
                     setSelLabels(prev => prev.includes(l.id) ? prev.filter(x => x !== l.id) : [...prev, l.id])
                   }
                   style={{
-                    background: checked ? l.color : 'white',
+                    background: checked ? l.color : 'var(--color-surface)',
                     color: checked ? 'white' : l.color,
                     borderColor: l.color,
                   }}
@@ -138,10 +138,10 @@ export function TaskDialog({ task, projects, labels, onClose }: Props) {
                 </button>
               );
             })}
-            {!labels.length && <span style={{ color: '#94a3b8', fontSize: 12 }}>No labels yet.</span>}
+            {!labels.length && <span className="muted-text">No labels yet.</span>}
           </div>
         </div>
-        <div style={{ marginTop: 12, padding: 12, background: '#f8fafc', borderRadius: 8 }}>
+        <div className="recurrence-box">
           <label style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <input type="checkbox" checked={recEnabled} onChange={e => setRecEnabled(e.target.checked)} style={{ width: 'auto' }} />
             Repeat

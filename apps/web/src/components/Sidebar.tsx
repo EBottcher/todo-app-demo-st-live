@@ -2,7 +2,12 @@ import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import { useCreateLabel, useCreateProject, useLabels, useProjects } from '../api/hooks';
 
-export function Sidebar() {
+interface Props {
+  theme: 'light' | 'dark';
+  onToggleTheme: () => void;
+}
+
+export function Sidebar({ theme, onToggleTheme }: Props) {
   const projects = useProjects();
   const labels = useLabels();
   const createProject = useCreateProject();
@@ -12,7 +17,12 @@ export function Sidebar() {
 
   return (
     <aside className="sidebar">
-      <h2 style={{ marginTop: 0 }}>TodoApp</h2>
+      <div className="sidebar-header">
+        <h2 style={{ marginTop: 0, marginBottom: 0 }}>TodoApp</h2>
+        <button type="button" className="theme-toggle" onClick={onToggleTheme}>
+          {theme === 'dark' ? '☀️ Light' : '🌙 Dark'}
+        </button>
+      </div>
 
       <h3>Smart filters</h3>
       <NavLink to="/" end>📥 All</NavLink>

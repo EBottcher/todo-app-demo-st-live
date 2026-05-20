@@ -11,7 +11,7 @@ export function ActivityPanel() {
           <div className="time">{new Date(a.timestampUtc).toLocaleString()} · {a.actor}</div>
         </div>
       ))}
-      {!data?.length && <p style={{ color: '#94a3b8' }}>No activity yet.</p>}
+      {!data?.length && <p className="muted-text">No activity yet.</p>}
     </aside>
   );
 }
